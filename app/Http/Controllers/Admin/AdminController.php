@@ -52,12 +52,17 @@ class AdminController extends Controller
 
             if (Gate::allows('VIEW_ADMIN_ARTICLES')) {
                 $menu->add('Статьи', ['route' => 'articles.index']);
+                $menu->add('Портфолио', ['route' => 'articles.index']);
             }
 
-            $menu->add('Портфолио', ['route' => 'articles.index']);
-            $menu->add('Меню', ['route' => 'menus.index']);
-            $menu->add('Пользователи', ['route' => 'users.index']);
-            $menu->add('Привелегии', ['route' => 'permissions.index']);
+            if (Gate::allows('VIEW_ADMIN_MENU')) {
+                $menu->add('Меню', ['route' => 'menus.index']);
+            }
+
+            if (Gate::allows('EDIT_USERS')) {
+                $menu->add('Пользователи', ['route' => 'users.index']);
+                $menu->add('Привелегии', ['route' => 'permissions.index']);
+            }
 
         });
     }

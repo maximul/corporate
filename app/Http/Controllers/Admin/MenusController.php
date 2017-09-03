@@ -84,6 +84,8 @@ class MenusController extends AdminController
 
         $this->title = 'Новый пункт меню';
 
+        $type = 'customLink';
+
         $tmp = $this->getMenus()->roots();
 
         //null
@@ -132,6 +134,7 @@ class MenusController extends AdminController
         }, ['' => 'Не используется']);
 
         $this->content = view(config('settings.theme').'.admin.menus_create_content')->with([
+            'type' => $type,
             'menus' => $menus,
             'categories' => $list,
             'articles'   => $articles,
